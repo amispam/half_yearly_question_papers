@@ -86,10 +86,17 @@
         <!-- Add download links or content here -->
     </div>
     <script>
+        // Obfuscated password check
+        function _d(c){return atob(c);}
         function checkPassword() {
             const password = document.getElementById('password').value;
             const errorDiv = document.getElementById('error');
-            if (password === '1434352') {
+            // Password is base64 encoded and split
+            const p1 = 'MTQz';
+            const p2 = 'NDM1';
+            const p3 = 'Mg==';
+            const realPassword = _d(p1) + _d(p2) + _d(p3);
+            if (password === realPassword) {
                 document.getElementById('password-container').classList.add('hidden');
                 document.getElementById('main-content').classList.remove('hidden');
             } else {
