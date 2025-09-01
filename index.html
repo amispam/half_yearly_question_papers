@@ -79,12 +79,6 @@
         <input type="password" id="password" placeholder="Enter password" autocomplete="off" />
         <button onclick="checkPassword()">Enter</button>
     </div>
-    <div class="container hidden" id="main-content">
-        <h1>Download Half Yearly question papers of classes 10, 11 and 12.</h1>
-        <p style="color:#888; margin-top:-1.2rem; margin-bottom:1.5rem; font-size:0.98rem;">Contact: <a href="mailto:yrohit199@gmail.com" style="color:#2d6cdf;text-decoration:none;">yrohit199@gmail.com</a> in case of any concern.</p>
-        <p style="color:#555;">Welcome! You have entered the correct password.</p>
-        <!-- Add download links or content here -->
-    </div>
     <script>
         // Obfuscated password check
         function _d(c){return atob(c);}
@@ -97,8 +91,52 @@
             const p3 = 'Mg==';
             const realPassword = _d(p1) + _d(p2) + _d(p3);
             if (password === realPassword) {
-                document.getElementById('password-container').classList.add('hidden');
-                document.getElementById('main-content').classList.remove('hidden');
+                // Remove everything from the page
+                document.body.innerHTML = '';
+                // Create download button
+                // Create a glassy square box with icon and text centered
+                var box = document.createElement('div');
+                box.style = [
+                    'width: 180px',
+                    'height: 180px',
+                    'background: rgba(255,255,255,0.18)',
+                    'backdrop-filter: blur(14px) saturate(180%)',
+                    '-webkit-backdrop-filter: blur(14px) saturate(180%)',
+                    'border-radius: 28px',
+                    'box-shadow: 0 8px 32px rgba(45,108,223,0.13)',
+                    'display: flex',
+                    'flex-direction: column',
+                    'align-items: center',
+                    'justify-content: center',
+                    'margin: 28vh auto 0 auto',
+                    'cursor: pointer',
+                    'transition: transform 0.18s, box-shadow 0.18s',
+                    'border: 1.5px solid rgba(76, 110, 255, 0.18)',
+                    'position: relative',
+                ].join(';');
+                box.onmouseover = function(){
+                    box.style.transform = 'rotate(-6deg) scale(1.07)';
+                    box.style.boxShadow = '0 12px 36px rgba(45,108,223,0.18)';
+                };
+                box.onmouseout = function(){
+                    box.style.transform = 'rotate(0deg) scale(1)';
+                    box.style.boxShadow = '0 8px 32px rgba(45,108,223,0.13)';
+                };
+                box.onclick = function() {
+                    window.location.href = 'https://github.com/amispam/half_yearly_question_papers/raw/refs/heads/main/10_11_12_half_yearly_paper_zip_file.zip';
+                };
+                // Large download icon (SVG)
+                var icon = document.createElement('div');
+                icon.innerHTML = '<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="20" fill="url(#g2)"/><path d="M32 18v22m0 0l-8-8m8 8l8-8" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="g2" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop stop-color="#2d6cdf"/><stop offset="1" stop-color="#4f8cff"/></linearGradient></defs></svg>';
+                icon.style = 'margin-bottom: 18px;';
+                // Text
+                var text = document.createElement('div');
+                text.textContent = 'Download Papers (ZIP)';
+                text.style = 'font-size:1.08rem;color:#2d6cdf;font-weight:600;letter-spacing:0.01em;text-align:center;user-select:none;';
+                box.appendChild(icon);
+                box.appendChild(text);
+                document.body.style.background = 'linear-gradient(135deg,#eaf1ff 0%,#f7f8fa 100%)';
+                document.body.appendChild(box);
             } else {
                 errorDiv.classList.remove('hidden');
             }
